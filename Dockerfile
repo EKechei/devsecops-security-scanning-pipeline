@@ -1,4 +1,4 @@
-# Build stage: use Python 3.11 Alpine image to match distroless runtime
+# Build stage: use Python 3.11 Alpine image
 FROM python:3.11.10-alpine3.20 AS builder
 
 # Install build dependencies for Python packages
@@ -16,7 +16,7 @@ RUN pip install --upgrade pip --no-cache-dir \
 COPY app/ ./app/
 
 # Runtime stage: use Python 3.11 Distroless image
-FROM gcr.io/distroless/python3:3.11
+FROM gcr.io/distroless/python3-debian12:nonroot
 
 # Set working directory
 WORKDIR /app
