@@ -1,5 +1,8 @@
-# Build stage: use Python slim image to install dependencies
-FROM python:3.9-slim AS builder
+# Build stage: use Python 3.12 Alpine image to install dependencies
+FROM python:3.12.12-alpine3.23 AS builder
+
+# Install build dependencies for Python packages
+RUN apk add --no-cache gcc musl-dev libffi-dev openssl-dev
 
 # Set working directory
 WORKDIR /app
@@ -12,14 +15,14 @@ RUN pip install --upgrade pip --no-cache-dir \
 # Copy application code
 COPY app/ ./app/
 
-# Runtime stage: use Python Distroless image
-FROM gcr.io/distroless/python3
+# Runtime stage: use Python 3.12 Distroless image
+FROM gcr.io/distroless/python3:3.12
 
 # Set working directory
 WORKDIR /app
 
 # Copy installed Python packages from builder
-COPY --from=builder /install /usr/local/lib/python3.9/site-packages
+COPY --from=builder /install /usr/local/lib/python3.12/site-packages
 
 # Copy application code
 COPY --from=builder /app /app
@@ -28,4 +31,4 @@ COPY --from=builder /app /app
 EXPOSE 8080
 
 # Run the application
-CMD ["python3", "app/app.py"]
+CMD ["app/app.py"]
