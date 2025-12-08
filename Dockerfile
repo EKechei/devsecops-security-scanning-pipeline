@@ -13,7 +13,7 @@ RUN pip install --upgrade pip --no-cache-dir \
 COPY app/ ./app/
 
 # Runtime stage: use Python Distroless image
-FROM gcr.io/distroless/python3:3.9
+FROM gcr.io/distroless/python3
 
 # Set working directory
 WORKDIR /app
