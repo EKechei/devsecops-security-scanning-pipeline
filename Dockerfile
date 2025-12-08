@@ -1,34 +1,13 @@
-# Build stage: use Python 3.11 Alpine image
-FROM python:3.11.10-alpine3.20 AS builder
-
-# Install build dependencies for Python packages
-RUN apk add --no-cache gcc musl-dev libffi-dev openssl-dev
-
-# Set working directory
+# Build stage
+FROM python:3.11-alpine AS builder
 WORKDIR /app
-
-# Copy requirements and install Python dependencies into a separate directory
 COPY requirements.txt .
-RUN pip install --upgrade pip --no-cache-dir \
-    && pip install --no-cache-dir -r requirements.txt --target=/install
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy application code
-COPY app/ ./app/
-
-# Runtime stage: use Python 3.11 Distroless image
-FROM gcr.io/distroless/python3-debian12:nonroot
-
-# Set working directory
+# Runtime stage - Python slim is already minimal
+FROM python:3.11-slim
 WORKDIR /app
-
-# Copy installed Python packages from builder 
-COPY --from=builder /install /usr/local/lib/python3.11/site-packages
-
-# Copy application code
-COPY --from=builder /app /app
-
-# Expose the port your app uses
+COPY --from=builder /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
+COPY app/ .
 EXPOSE 8080
-
-# Run the application
-CMD ["app/app.py"]
+CMD ["python", "app.py"]
