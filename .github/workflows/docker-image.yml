@@ -26,6 +26,13 @@ jobs:
             --confidence-level high \
         continue-on-error: true  # Review findings but don't block build immediately
 
+      - name: Scan Python dependencies
+        run: |
+          pip install pip-audit
+          pip-audit --severity high
+
+
+
       - name: Lint Dockerfile
         uses: hadolint/hadolint-action@v3.1.0
         with:
