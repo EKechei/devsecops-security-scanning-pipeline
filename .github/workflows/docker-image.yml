@@ -26,10 +26,10 @@ jobs:
             --confidence-level high \
         continue-on-error: true  # Review findings but don't block build immediately
 
-      - name: Scan Python dependencies
+      - name: Scan Python dependencies with safety
         run: |
-          pip install pip-audit
-          pip-audit --severity high
+          pip install safety
+          safety check --severity high
 
 
 
