@@ -48,16 +48,22 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag ${{ secrets.DOCKERHUB_USERNAME }}/my-demo-app:latest
-
+        run:  docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/my-demo-app:${{ github.sha }} .
 
       - name: Install Trivy
         run: |
            curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo sh -s -- -b /usr/local/bin v0.68.1
 
       - name: Scan Docker image
-        run: trivy image --exit-code 1 --severity HIGH,CRITICAL ${{ secrets.DOCKERHUB_USERNAME }}/my-demo-app:latest
-        
+        run: trivy image --exit-code 1 --severity HIGH, CRITICAL ${{ secrets.DOCKERHUB_USERNAME }}/my-demo-app:${{ github.sha }}
+
+      - name: Tag image as latest
+        run: |
+          docker tag \
+            ${{ secrets.DOCKERHUB_USERNAME }}/my-demo-app:${{ github.sha }} \
+            ${{ secrets.DOCKERHUB_USERNAME }}/my-demo-app:latest
+
+    
       - name: Push the Docker image
         run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/my-demo-app:latest
 
