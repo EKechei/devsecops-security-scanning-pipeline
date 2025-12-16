@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: DevSecOps Pipeline
 
 on:
   push:
@@ -16,6 +16,13 @@ jobs:
 
       - name: Scan for secrets
         uses: gitleaks/gitleaks-action@v2
+        
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+            python-version: '3.12'
+ 
 
 
       - name: Security scan with Bandit
@@ -25,7 +32,7 @@ jobs:
           bandit -r . \
             --severity-level high \
             --confidence-level high \
-        continue-on-error: true  # Review findings but don't block build immediately
+        continue-on-error: true  
         
 
       - name: Scan Python dependencies
