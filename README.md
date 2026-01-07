@@ -1,5 +1,6 @@
 # GithubActions-Project
 
+```mermaid
 flowchart TB
     B["Build (Docker)"]
 
