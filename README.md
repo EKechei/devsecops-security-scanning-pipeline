@@ -1,11 +1,11 @@
 # GithubActions-Project
 
-```mermaid
 flowchart TB
-    B[Build<br/>(Docker)]
+    B["Build (Docker)"]
 
-    B --> T[Test<br/>(Secrets<br/>Bandit<br/>pip-audit)]
-    B --> S[Scan<br/>(Trivy)]
+    B --> T["Test: Secrets, Bandit, pip-audit"]
+    B --> S["Scan (Trivy)"]
 
-    S --> R[Release<br/>DockerHub]
+    S --> R["Release to Docker Hub"]
+
 
