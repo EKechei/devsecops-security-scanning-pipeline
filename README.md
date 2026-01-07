@@ -1,7 +1,7 @@
 # GithubActions-Project
 
-```mermaid   
-      flowchart TB
+```mermaid
+flowchart TB
     B[Build<br/>(Docker)]
 
     B --> T[Test<br/>(Secrets<br/>Bandit<br/>pip-audit)]
