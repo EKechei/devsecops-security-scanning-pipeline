@@ -58,3 +58,14 @@ When you push code to ```main```, the pipeline runs and does the following:
 This is a practical example of shifting security left in a CI/CD pipeline.
 
 # Tools Used
+- GitHub Actions
+- Gitleaks
+- Bandit
+- pip-audit
+- Hadolint
+- Trivy
+- Docker & Docker Hub
+
+# Notes
+Some security checks are set to **warn instead of fail**.
+This makes the pipeline beginner-friendly while still showing potential risks.
