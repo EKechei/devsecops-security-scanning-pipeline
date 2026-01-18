@@ -2,10 +2,8 @@
 FROM python:3.11-alpine AS builder
 WORKDIR /app
 COPY requirements.txt .
-RUN pip install --no-cache-dir --upgrade pip setuptools && \
-    pip install --no-cache-dir -U jaraco.context==6.1.0 && \
-    pip install --no-cache-dir -r requirements.txt
-    
+RUN pip install --no-cache-dir -r requirements.txt
+
 # Runtime stage - use Alpine for smaller, more secure image
 FROM python:3.11-alpine
 WORKDIR /app
