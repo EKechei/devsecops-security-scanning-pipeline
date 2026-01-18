@@ -1,2 +1,2 @@
-flask
-jaraco.context>=6.1.0  
+flask==3.0.0
+jaraco.context==6.1.0
