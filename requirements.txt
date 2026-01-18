@@ -1,2 +1,2 @@
 flask
-setuptools>=75.0.0
+jaraco.context>=6.1.0  
