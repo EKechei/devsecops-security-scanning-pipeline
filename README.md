@@ -1,5 +1,6 @@
 # DevSecOps Pipeline
 
+*CI security pipeline: catches vulnerabilities and blocks unsafe Docker images before deployment.*
 ```mermaid
 graph TD
     A["🔨 Build<br/>Docker Image"] --> B["🔍 Test & Scan<br/>Secrets • Bandit<br/>pip-audit • Hadolint"]
