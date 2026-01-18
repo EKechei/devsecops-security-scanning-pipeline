@@ -54,8 +54,8 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build the Docker image
-        run:  docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/my-demo-app:${{ github.sha }} .
-
+        run: docker build --no-cache -t ${{ secrets.DOCKERHUB_USERNAME }}/my-demo-app:${{ github.sha }} .
+        
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
