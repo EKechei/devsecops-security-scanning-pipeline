@@ -1,1 +1,14 @@
+# GHSA-58pv-8j8x-9vj2
+# Package: jaraco.context (vendored in setuptools)
+# Issue: Path traversal vulnerability in tar extraction
+# Reason: This is a vendored dependency inside setuptools that cannot be 
+#         directly upgraded via pip. Setuptools maintainers need to update 
+#         their vendored version. Dependabot will alert us when setuptools 
+#         releases a fix.
+# Status: Waiting for setuptools update
+# Remove this line once setuptools is patched
+
+
+
+
 GHSA-58pv-8j8x-9vj2
