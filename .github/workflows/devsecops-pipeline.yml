@@ -39,7 +39,12 @@ jobs:
           pip install pip-audit
           pip-audit || echo "Vulnerabilities found - continuing for now"
         continue-on-error: true
-                  
+
+      - name: Run application tests
+        run: |
+          pip install pytest
+          pytest test_app.py -v
+                        
 
       - name: Lint Dockerfile
         uses: hadolint/hadolint-action@v3.1.0
