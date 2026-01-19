@@ -80,4 +80,3 @@ jobs:
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/my-demo-app:${{ github.sha }}
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/my-demo-app:latest
           
-
