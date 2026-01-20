@@ -8,7 +8,7 @@ graph TD
     B --> D["📦 Release<br/>Tag & Push to Docker Hub"]
     C --> D
     
-    D --> E["✅ Deployed<br/>SHA Tag + Latest"]
+    D --> E["✅ Image Published<br/>SHA Tag + Latest"]
     
     style A fill:#1e293b,stroke:#3b82f6,stroke-width:2px,color:#f8fafc
     style B fill:#1e293b,stroke:#3b82f6,stroke-width:2px,color:#f8fafc
