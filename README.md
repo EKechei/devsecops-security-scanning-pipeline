@@ -70,3 +70,4 @@ This is a practical example of shifting security left in a CI/CD pipeline.
 # Notes
 Some security checks are set to **warn instead of fail**.
 This makes the pipeline beginner-friendly while still showing potential risks.
+
