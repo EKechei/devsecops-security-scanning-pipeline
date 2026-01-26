@@ -1,11 +1,11 @@
 # Build stage
-FROM python:3.11-alpine AS builder
+FROM python:3.14-alpine AS builder
 WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Runtime stage - use Alpine for smaller, more secure image
-FROM python:3.11-alpine
+FROM python:3.14-alpine
 WORKDIR /app
 
 # Create non-root user
